@@ -57,13 +57,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Game Logic (Placeholder)
+  // Game Logic
   const gameButtons = document.querySelectorAll('.play-game-btn');
-  gameButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const gameName = btn.getAttribute('data-game');
-      alert(`Starting ${gameName}... (Game logic to be implemented)`);
+  const gameMenu = document.getElementById('game-selection-menu');
+  const activeGameContainer = document.getElementById('active-game-container');
+  const gameBoardArea = document.getElementById('game-board-area');
+  const backBtn = document.getElementById('back-to-menu-btn');
+  const currentGameTitle = document.getElementById('current-game-title');
+  const gameControlsInfo = document.getElementById('game-controls-info');
+  const scoreDisplay = document.getElementById('game-score-display');
+
+  let currentGameInstance = null;
+
+  if (gameButtons.length > 0 && gameMenu && activeGameContainer) {
+    gameButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const gameName = btn.getAttribute('data-game');
+        startGame(gameName);
+      });
     });
-  });
+
+    backBtn.addEventListener('click', () => {
+      stopGame();
+    });
+  }
+
+  function startGame(gameName) {
+    if (!window.Games || !window.Games[gameName]) {
+      alert('Game not found or failed to load.');
+      return;
+    }
+
+    // Switch View
+    gameMenu.style.display = 'none';
+    activeGameContainer.style.display = 'block';
+    currentGameTitle.textContent = gameName.charAt(0).toUpperCase() + gameName.slice(1);
+    scoreDisplay.textContent = "Score: 0";
+
+    // Initialize Game
+    const gameModule = window.Games[gameName];
+    currentGameInstance = gameModule.init(gameBoardArea, (score) => {
+      scoreDisplay.textContent = `Score: ${score}`;
+    });
+
+    if (currentGameInstance.controls) {
+      gameControlsInfo.textContent = currentGameInstance.controls;
+    } else {
+      gameControlsInfo.textContent = '';
+    }
+  }
+
+  function stopGame() {
+    if (currentGameInstance && currentGameInstance.cleanup) {
+      currentGameInstance.cleanup();
+    }
+    currentGameInstance = null;
+
+    // Clear Board
+    gameBoardArea.innerHTML = '';
+
+    // Switch View
+    activeGameContainer.style.display = 'none';
+    gameMenu.style.display = 'grid'; // Restore grid layout
+  }
 });

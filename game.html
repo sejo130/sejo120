@@ -31,7 +31,7 @@
                 <h2>Select a Game</h2>
                 <p style="color: #94a3b8; margin-bottom: 2rem;">Choose your challenge.</p>
 
-                <div class="game-grid">
+                <div class="game-grid" id="game-selection-menu">
                     <!-- Tetris -->
                     <div class="game-card">
                         <div>
@@ -39,7 +39,7 @@
                             <h3>Tetris</h3>
                             <p style="color: #cbd5e1; margin-bottom: 1rem;">Classic block stacking puzzle.</p>
                         </div>
-                        <button class="btn btn-primary play-game-btn" data-game="Tetris">Start Game</button>
+                        <button class="btn btn-primary play-game-btn" data-game="tetris">Start Game</button>
                     </div>
 
                     <!-- Snake -->
@@ -50,7 +50,7 @@
                             <p style="color: #cbd5e1; margin-bottom: 1rem;">Eat apples, grow long, don't hit the wall.
                             </p>
                         </div>
-                        <button class="btn btn-primary play-game-btn" data-game="Snake">Start Game</button>
+                        <button class="btn btn-primary play-game-btn" data-game="snake">Start Game</button>
                     </div>
 
                     <!-- Minesweeper -->
@@ -61,12 +61,36 @@
                             <p style="color: #cbd5e1; margin-bottom: 1rem;">Clear the field without detonating mines.
                             </p>
                         </div>
-                        <button class="btn btn-primary play-game-btn" data-game="Minesweeper">Start Game</button>
+                        <button class="btn btn-primary play-game-btn" data-game="minesweeper">Start Game</button>
+                    </div>
+                </div>
+
+                <!-- Active Game Area -->
+                <div id="active-game-container" style="display: none; width: 100%; text-align: center;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 id="current-game-title" style="margin: 0;">Game Title</h3>
+                        <button id="back-to-menu-btn" class="btn btn-secondary"
+                            style="padding: 0.5rem 1rem; font-size: 0.9rem;">Back to Menu</button>
+                    </div>
+                    <div id="game-board-area"
+                        style="position: relative; display: inline-block; background: #1e293b; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <!-- Game Canvas or Grid will be injected here -->
+                    </div>
+                    <div id="game-controls-info" style="margin-top: 1rem; color: #94a3b8; font-size: 0.9rem;">
+                        <!-- Controls info will be injected here -->
+                    </div>
+                    <div id="game-score-display"
+                        style="margin-top: 0.5rem; font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">
+                        Score: 0
                     </div>
                 </div>
             </div>
         </main>
     </div>
+    <script src="js/games/snake.js"></script>
+    <script src="js/games/tetris.js"></script>
+    <script src="js/games/minesweeper.js"></script>
     <script src="js/main.js"></script>
 </body>
 
