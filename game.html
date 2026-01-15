@@ -20,24 +20,50 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="game.html" style="color:var(--primary-color); opacity:1;">Play Game</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
         </header>
 
         <main class="content-section">
             <div class="card">
-                <h2>Interactive Module</h2>
-                <p style="margin-bottom: 1rem; color: #cbd5e1;">This is the sub-page where the core application logic
-                    resides.</p>
+                <h2>Select a Game</h2>
+                <p style="color: #94a3b8; margin-bottom: 2rem;">Choose your challenge.</p>
 
-                <div id="game-container">
-                    <div class="placeholder-text">[ Game Canvas Placeholder ]</div>
+                <div class="game-grid">
+                    <!-- Tetris -->
+                    <div class="game-card">
+                        <div>
+                            <span class="game-icon">🧱</span>
+                            <h3>Tetris</h3>
+                            <p style="color: #cbd5e1; margin-bottom: 1rem;">Classic block stacking puzzle.</p>
+                        </div>
+                        <button class="btn btn-primary play-game-btn" data-game="Tetris">Start Game</button>
+                    </div>
+
+                    <!-- Snake -->
+                    <div class="game-card">
+                        <div>
+                            <span class="game-icon">🐍</span>
+                            <h3>Snake</h3>
+                            <p style="color: #cbd5e1; margin-bottom: 1rem;">Eat apples, grow long, don't hit the wall.
+                            </p>
+                        </div>
+                        <button class="btn btn-primary play-game-btn" data-game="Snake">Start Game</button>
+                    </div>
+
+                    <!-- Minesweeper -->
+                    <div class="game-card">
+                        <div>
+                            <span class="game-icon">💣</span>
+                            <h3>Minesweeper</h3>
+                            <p style="color: #cbd5e1; margin-bottom: 1rem;">Clear the field without detonating mines.
+                            </p>
+                        </div>
+                        <button class="btn btn-primary play-game-btn" data-game="Minesweeper">Start Game</button>
+                    </div>
                 </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="index.html" style="color: var(--secondary-color);">← Back to Home</a>
             </div>
         </main>
     </div>

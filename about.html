@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEJO120 - About</title>
+    <meta name="description" content="About SEJO120 project.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">SEJO120</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game.html">Play Game</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html" style="color:var(--primary-color); opacity:1;">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content-section">
+            <div class="card">
+                <h2>About Project</h2>
+                <p style="color: #94a3b8; margin-bottom: 2rem;">Edit the project description below.</p>
+
+                <div class="editable-area" id="about-editor" contenteditable="true">
+                    Welcome to the SEJO120 Project.
+
+                    This platform is designed to showcase modern web capabilities including:
+                    - Dynamic game interactions
+                    - Real-time media galleries
+                    - Persistent content management
+
+                    Feel free to edit this text. Your changes will be saved locally.
+                </div>
+
+                <div class="toolbar">
+                    <button id="save-about-btn" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
