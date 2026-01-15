@@ -1,13 +1,19 @@
 /* Global Styles */
 :root {
-    --bg-color: #fff9f0; /* Warm cream background */
-    --text-color: #5d5d5d; /* Soft dark gray */
-    --primary-color: #ff9fb3; /* Pastel Pink */
-    --secondary-color: #a0c4ff; /* Pastel Blue */
-    --accent-color: #fdffb6; /* Pastel Yellow */
+    --bg-color: #fff9f0;
+    /* Warm cream background */
+    --text-color: #5d5d5d;
+    /* Soft dark gray */
+    --primary-color: #ff9fb3;
+    /* Pastel Pink */
+    --secondary-color: #a0c4ff;
+    /* Pastel Blue */
+    --accent-color: #fdffb6;
+    /* Pastel Yellow */
     --card-bg: #ffffff;
     --shadow-color: rgba(255, 159, 179, 0.2);
-    --font-main: 'Fredoka', sans-serif; /* Rounded font */
+    --font-main: 'Fredoka', sans-serif;
+    /* Rounded font */
 }
 
 * {
@@ -24,7 +30,8 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     background-image: radial-gradient(#ffdfd3 2px, transparent 2px);
-    background-size: 40px 40px; /* Polka dot pattern */
+    background-size: 40px 40px;
+    /* Polka dot pattern */
 }
 
 a {
@@ -158,6 +165,7 @@ nav a:hover::after {
     background-color: var(--secondary-color);
     color: white;
 }
+
 .btn-secondary:hover {
     transform: scale(1.1);
     background-color: #8ecae6;
@@ -172,7 +180,8 @@ nav a:hover::after {
     background: var(--card-bg);
     border-radius: 40px;
     padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Soft shadow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
     margin-bottom: 2rem;
     border: 5px solid #fff;
 }
@@ -196,7 +205,8 @@ nav a:hover::after {
     justify-content: space-between;
     height: 100%;
     border: 3px solid #f0f0f0;
-    box-shadow: 0 8px 0 #f0f0f0; /* Cute 3D effect */
+    box-shadow: 0 8px 0 #f0f0f0;
+    /* Cute 3D effect */
 }
 
 .game-card:hover {
@@ -213,9 +223,17 @@ nav a:hover::after {
 }
 
 @keyframes floating {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 /* Active Game Container */
@@ -227,7 +245,8 @@ nav a:hover::after {
 }
 
 #game-board-area {
-    background: #f1f5f9 !important; /* Override inline style */
+    background: #f1f5f9 !important;
+    /* Override inline style */
     border-radius: 20px !important;
     border: 4px dashed var(--secondary-color) !important;
     box-shadow: none !important;
@@ -264,7 +283,7 @@ nav a:hover::after {
     overflow: hidden;
     border-radius: 20px;
     border: 5px solid white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-item img {
@@ -290,7 +309,7 @@ nav a:hover::after {
     line-height: 1.8;
     outline: none;
     white-space: pre-wrap;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .editable-area:focus {
@@ -309,15 +328,123 @@ nav a:hover::after {
     background-color: #e2e8f0 !important;
     padding: 10px !important;
 }
+
 .cell {
     border-radius: 5px;
     background-color: #fff !important;
     box-shadow: 0 2px 0 #cbd5e1;
 }
+
 .cell:hover {
     transform: translateY(-1px);
 }
+
 .cell.revealed {
     background-color: #e2e8f0 !important;
     box-shadow: none;
+}
+
+/* Quiz Styles */
+.quiz-card {
+    background-color: #fff;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-card:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.badge {
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+}
+
+.badge-kr {
+    background-color: #ff9fb3;
+}
+
+.badge-math {
+    background-color: #a0c4ff;
+}
+
+.badge-soc {
+    background-color: #bdb2ff;
+}
+
+.badge-sci {
+    background-color: #9bf6ff;
+    color: #555;
+}
+
+.badge-def {
+    background-color: #ffd6a5;
+    color: #555;
+}
+
+.quiz-question {
+    font-size: 1.3rem;
+    margin: 0;
+    color: #4a4a4a;
+    flex: 1;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid #f0f0f0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quiz-option:hover {
+    background-color: #f9f9f9;
+    border-color: var(--secondary-color);
+}
+
+.quiz-option input[type="radio"] {
+    margin-right: 1rem;
+    accent-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.quiz-card.correct {
+    border-color: #4ade80;
+    background-color: #f0fdf4;
+}
+
+.quiz-card.incorrect {
+    border-color: #f87171;
+    background-color: #fef2f2;
+}
+
+.submit-quiz-btn {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    padding: 1.5rem;
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매일 학습 - 안경뚱땡이의 e학습터</title>
+    <meta name="description" content="5학년 학생들을 위한 매일 학습 퀴즈">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">안경뚱땡이</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="study.html" style="color:var(--primary-color); opacity:1;">매일 학습</a></li>
+                    <li><a href="game.html">게임</a></li>
+                    <li><a href="gallery.html">갤러리</a></li>
+                    <li><a href="about.html">소개</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content-section">
+            <div class="card">
+                <h2>오늘의 학습</h2>
+                <p style="color: #94a3b8; margin-bottom: 2rem;">하루 10문제로 실력을 쑥쑥 키워보세요!</p>
+
+                <div id="quiz-container">
+                    <!-- Quiz will be injected here -->
+                    <div style="text-align:center; padding: 2rem;">로딩 중...</div>
+                </div>
+
+                <div id="result-container" style="display: none; text-align: center; padding: 2rem;">
+                    <div style="font-size: 5rem; margin-bottom: 1rem;">🏆</div>
+                    <h2 id="score-value" style="font-size: 3rem; color: var(--primary-color);"></h2>
+                    <p id="score-message" style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--text-color);"></p>
+                    <button id="retry-btn" class="btn btn-primary">다시 풀기</button>
+                    <a href="index.html" class="btn btn-secondary">홈으로 가기</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/study.js"></script>
+</body>
+
+</html>
