@@ -27,6 +27,7 @@ const MinesweeperGame = (function () {
                 padding: 10px;
                 border: 4px solid #475569;
                 margin: 0 auto;
+                position: relative;
             }
             .cell {
                 width: 40px;
@@ -45,6 +46,27 @@ const MinesweeperGame = (function () {
             .cell.revealed { background-color: #e2e8f0; cursor: default; }
             .cell.mine { background-color: #ef4444; }
             .cell.flagged { background-color: #f59e0b; }
+            .status-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 2rem;
+                font-weight: bold;
+                flex-direction: column;
+                cursor: pointer;
+            }
+            .status-overlay span {
+                font-size: 1rem;
+                margin-top: 10px;
+                color: #ddd;
+            }
         `;
         container.appendChild(style);
 
@@ -54,15 +76,28 @@ const MinesweeperGame = (function () {
 
         createBoard(gridEl);
 
+        // Global click listener for restart
+        // We use 'mousedown' to catch it before cell click logic if needed, 
+        // but 'click' is fine if we check target. 
+        // Actually, simpler: create a restart overlay when game over.
+
         return {
             controls: "Left click to reveal. Right click to flag.",
             cleanup: cleanup
         };
     }
 
+    // Helper to create board (extracted for reuse if needed, but we'll use overlay for restart)
     function createBoard(gridEl) {
         grid = [];
-        gridEl.innerHTML = ''; // Start fresh
+        gridEl.innerHTML = '';
+
+        // Remove any existing overlays
+        const oldOverlay = gridEl.querySelector('.status-overlay');
+        if (oldOverlay) oldOverlay.remove();
+
+        // Initialize grid data... (rest is same)
+
 
         // Initialize grid data
         for (let r = 0; r < rows; r++) {
@@ -137,8 +172,8 @@ const MinesweeperGame = (function () {
             cellData.element.classList.add('mine');
             cellData.element.textContent = '💣';
             gameOver = true;
-            alert('Game Over!');
             revealAll();
+            showGameOver('Game Over!');
             return;
         }
 
@@ -195,8 +230,23 @@ const MinesweeperGame = (function () {
             gameOver = true;
             score = 100; // Arbitrary win score
             if (onScoreUpdate) onScoreUpdate(score);
-            alert('You Win!');
+            showGameOver('You Win!');
         }
+    }
+
+    function showGameOver(message) {
+        const gridEl = container.querySelector('.minesweeper-grid');
+        const overlay = document.createElement('div');
+        overlay.className = 'status-overlay';
+        overlay.innerHTML = `
+            <div>${message}</div>
+            <span>Click to Restart</span>
+        `;
+        overlay.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent bubbling if needed
+            init(container, onScoreUpdate);
+        });
+        gridEl.appendChild(overlay);
     }
 
     function cleanup() {
