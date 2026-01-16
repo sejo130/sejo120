@@ -56,42 +56,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Click tracking for encouragement
         let clickCount = 0;
-        let encouragementThreshold = getRandomThreshold();
+        // Quote logic: Show quote every 30 clicks
+        const QUOTE_THRESHOLD = 30;
 
-        // Encouragement messages
-        const messages = [
-            "조금만 더!",
-            "힘내라!",
-            "멋져!",
-            "할 수 있어!",
-            "지방이 타고 있어!",
-            "최고야!",
-            "포기하지 마!",
-            "으라차차!",
-            "달려라 달려!",
-            "땀은 배신하지 않아!",
-            "건강해지고 있어!",
-            "오운완 가자!"
+        // Workout Quotes
+        const quotes = [
+            "땀은 배신하지 않는다!",
+            "오늘의 고통이 내일의 영광이 된다.",
+            "나약한 신체는 나약한 정신을 만든다.",
+            "운동은 시작이 반이다.",
+            "포기하지 않는 한 실패는 없다.",
+            "건강한 신체에 건강한 정신이 깃든다.",
+            "나는 할 수 있다! 나는 해낼 것이다!",
+            "천 리 길도 한 걸음부터.",
+            "멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다.",
+            "오늘 걷지 않으면 내일은 뛰어야 한다."
         ];
-
-        function getRandomThreshold() {
-            return Math.floor(Math.random() * 51) + 50; // Random between 50 and 100
-        }
 
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        function showEncouragement() {
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            speechBubble.textContent = randomMessage;
+        function showQuote() {
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            speechBubble.innerHTML = randomQuote.replace('\n', '<br>'); // Handle multiline if needed
             speechBubble.classList.remove('hidden');
             speechBubble.classList.add('visible');
 
             setTimeout(() => {
                 speechBubble.classList.remove('visible');
                 speechBubble.classList.add('hidden');
-            }, 3000);
+            }, 4000); // Show for 4 seconds
         }
 
         function handleInteraction(e) {
@@ -113,12 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 hippoElement.classList.remove('running-hard');
             }, 200);
 
-            // Encouragement logic
+            // Quote Trigger Logic
             clickCount++;
-            if (clickCount >= encouragementThreshold) {
-                showEncouragement();
+            if (clickCount >= QUOTE_THRESHOLD) {
+                showQuote();
                 clickCount = 0;
-                encouragementThreshold = getRandomThreshold();
             }
         }
 
