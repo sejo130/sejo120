@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수업 도구 - 안경뚱땡이의 e학습터</title>
+    <meta name="description" content="수업에 필요한 유용한 도구들 모음">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">안경뚱땡이</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="study.html">매일 학습</a></li>
+                    <li><a href="tools.html" class="active">수업 도구</a></li>
+                    <li><a href="game.html">게임</a></li>
+                    <li><a href="workout.html">땀흘리기</a></li>
+                    <li><a href="gallery.html">갤러리</a></li>
+                    <li><a href="about.html">소개</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content-section">
+            <div class="tools-grid">
+
+                <!-- Whiteboard Section -->
+                <div class="card tool-card whiteboard-section">
+                    <h2>🎨 화이트보드</h2>
+                    <p style="color:#888; margin-bottom:1rem;">자유롭게 판서하고 그림을 그려보세요.</p>
+                    <div class="canvas-container">
+                        <canvas id="whiteboard-canvas"></canvas>
+                    </div>
+                    <div class="tool-controls">
+                        <button class="btn btn-secondary btn-small" id="clear-board">지우기</button>
+                        <div class="color-picker">
+                            <button class="color-btn" data-color="#000000" style="background:#000;"></button>
+                            <button class="color-btn" data-color="#ff4757" style="background:#ff4757;"></button>
+                            <button class="color-btn" data-color="#2ed573" style="background:#2ed573;"></button>
+                            <button class="color-btn" data-color="#1e90ff" style="background:#1e90ff;"></button>
+                        </div>
+                        <input type="range" id="pen-size" min="1" max="20" value="3">
+                    </div>
+                </div>
+
+                <!-- Right Column Tools -->
+                <div class="tools-sidebar">
+
+                    <!-- Noise Meter -->
+                    <div class="card tool-card tool-sidebar-item">
+                        <h2>🔊 소음 측정기</h2>
+                        <p style="color:#888; font-size:0.9rem; margin-bottom:1rem;">교실 소음을 측정합니다.</p>
+                        <div class="meter-container">
+                            <div class="meter-bar-bg">
+                                <div id="noise-bar" class="meter-bar-fill"></div>
+                            </div>
+                            <div id="noise-value">0 dB</div>
+                            <div id="noise-status">조용함</div>
+                        </div>
+                        <button id="start-mic-btn" class="btn btn-primary btn-small"
+                            style="margin-top:1rem; width:100%;">마이크 켜기</button>
+                    </div>
+
+                    <!-- QR Generator -->
+                    <div class="card tool-card tool-sidebar-item">
+                        <h2>📱 QR 코드 생성</h2>
+                        <p style="color:#888; font-size:0.9rem; margin-bottom:1rem;">주소를 입력하면 QR이 생성됩니다.</p>
+
+                        <div class="qr-input-group">
+                            <input type="text" id="qr-input" class="name-input" placeholder="https://..."
+                                style="margin-bottom:0.5rem;">
+                            <button id="generate-qr-btn" class="btn btn-secondary btn-small"
+                                style="width:100%;">생성하기</button>
+                        </div>
+
+                        <div id="qr-result"
+                            style="margin-top:1rem; text-align:center; min-height:150px; display:flex; align-items:center; justify-content:center; background:#f8f9fa; border-radius:10px;">
+                            <span style="color:#ccc;">QR 코드가 여기에 나옵니다</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/tools.js"></script>
+</body>
+
+</html>
