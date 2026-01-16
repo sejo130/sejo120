@@ -1,16 +1,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const counterElement = document.getElementById('workout-counter');
-    const hippoElement = document.getElementById('hippo-character');
+    const hippoElement = document.getElementById('hippo-character-sprite');
     const speechBubble = document.getElementById('speech-bubble');
-    
+
     // Initial count: 1 Gyeong (10^16)
     let currentCount = 10000000000000000n;
-    
+
     // Click tracking for encouragement
     let clickCount = 0;
     let encouragementThreshold = getRandomThreshold();
-    
+
     // Encouragement messages
     const messages = [
         "조금만 더!",
@@ -48,21 +48,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleInteraction(e) {
-        // Prevent default behavior to stop double firing on some touch devices if needed, 
-        // though usually e.preventDefault() on click affects other things. 
-        // For simple game, regular click is fine.
-
         // Decrement counter
         if (currentCount > 0n) {
             currentCount--;
             counterElement.textContent = formatNumber(currentCount);
         }
 
-        // Add run animation effect
-        hippoElement.classList.add('running-hard');
+        // Add run animation effect (speed up temporarily)
+        hippoElement.classList.add('running-fast');
+        hippoElement.classList.add('running-hard'); // Scale effect
+
+        // Remove fast run after short delay
         setTimeout(() => {
+            hippoElement.classList.remove('running-fast');
             hippoElement.classList.remove('running-hard');
-        }, 100); // Short burst for each click
+        }, 200);
 
         // Encouragement logic
         clickCount++;
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     hippoElement.addEventListener('click', handleInteraction);
-    
+
     // Also allow clicking the container area for easier mobile usage
     hippoElement.parentElement.addEventListener('click', (e) => {
         if (e.target !== hippoElement) {

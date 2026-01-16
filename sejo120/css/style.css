@@ -461,7 +461,7 @@ nav a:hover::after {
     padding: 1.5rem 3rem;
     display: inline-block;
     margin: 2rem 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: 3px solid var(--secondary-color);
 }
 
@@ -469,7 +469,8 @@ nav a:hover::after {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
-    font-family: 'Courier New', monospace; /* Monospace for stable numbers */
+    font-family: 'Courier New', monospace;
+    /* Monospace for stable numbers */
 }
 
 .game-area {
@@ -478,43 +479,83 @@ nav a:hover::after {
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
-    min-height: 400px; /* Space for speech bubble */
+    min-height: 400px;
+    /* Space for speech bubble */
 }
 
 .hippo-wrapper {
     cursor: pointer;
     transition: transform 0.1s;
-    user-select: none; /* Prevent highlighting on rapid clicks */
+    user-select: none;
+    /* Prevent highlighting on rapid clicks */
     -webkit-user-select: none;
 }
 
+
 #hippo-character {
-    max-width: 100%;
-    height: auto;
-    width: 400px;
-    /* Optional: if you want a border or shadow for the image specifically */
-    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+    display: none;
+    /* Hide original img tag */
+}
+
+/* Sprite Animation Container */
+.hippo-sprite {
+    width: 300px;
+    height: 300px;
+    background-image: url('../img/hippo_sprite.png');
+    background-size: 200% 200%;
+    /* 2 columns, 2 rows = 200% size */
+    background-position: 0% 0%;
+    margin: 0 auto;
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
+}
+
+/* Animation States */
+.hippo-sprite.running {
+    animation: run-cycle 0.5s steps(1) infinite;
+}
+
+.hippo-sprite.running-fast {
+    animation: run-cycle 0.25s steps(1) infinite;
+}
+
+@keyframes run-cycle {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    /* Top Left */
+    25% {
+        background-position: 100% 0%;
+    }
+
+    /* Top Right */
+    50% {
+        background-position: 0% 100%;
+    }
+
+    /* Bottom Left */
+    75% {
+        background-position: 100% 100%;
+    }
+
+    /* Bottom Right */
 }
 
 /* Animations */
 .running-hard {
-    animation: run-shake 0.2s ease-in-out;
+    /* Shake effect combined with sprite */
+    transform: scale(1.05);
+    transition: transform 0.1s;
 }
 
-@keyframes run-shake {
-  0% { transform: translateY(0) rotate(0); }
-  25% { transform: translateY(2px) rotate(1deg); }
-  50% { transform: translateY(-2px) rotate(-1deg); }
-  75% { transform: translateY(2px) rotate(1deg); }
-  100% { transform: translateY(0) rotate(0); }
-}
 
 /* Speech Bubble */
 .speech-bubble {
     position: absolute;
-    top: 50px; 
+    top: 50px;
     right: 50%;
-    transform: translateX(140%) translateY(10px); /* Position to the right of center */
+    transform: translateX(140%) translateY(10px);
+    /* Position to the right of center */
     background-color: #ffffff;
     border: 3px solid var(--primary-color);
     border-radius: 20px;
@@ -522,7 +563,7 @@ nav a:hover::after {
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--text-color);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 10;
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
@@ -534,7 +575,8 @@ nav a:hover::after {
     content: '';
     position: absolute;
     bottom: 20px;
-    left: -18px; /* Arrow pointing left to the hippo */
+    left: -18px;
+    /* Arrow pointing left to the hippo */
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
