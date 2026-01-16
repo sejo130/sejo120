@@ -29,22 +29,41 @@
             </nav>
         </header>
 
-        <main class="content-section">
-            <div class="card">
-                <h2>오늘의 학습</h2>
-                <p style="color: #94a3b8; margin-bottom: 2rem;">하루 10문제로 실력을 쑥쑥 키워보세요!</p>
+        <main class="content-section study-layout">
+            <div class="study-left">
+                <div class="card">
+                    <h2>오늘의 학습</h2>
+                    <p style="color: #94a3b8; margin-bottom: 2rem;">하루 10문제로 실력을 쑥쑥 키워보세요!</p>
 
-                <div id="quiz-container">
-                    <!-- Quiz will be injected here -->
-                    <div style="text-align:center; padding: 2rem;">로딩 중...</div>
+                    <div class="name-input-container">
+                        <label for="participant-name" class="name-input-label">이름을 입력하세요</label>
+                        <input type="text" id="participant-name" class="name-input" placeholder="여기에 이름을 쓰세요 (예: 김하마)">
+                    </div>
+
+                    <div id="quiz-container">
+                        <!-- Quiz will be injected here -->
+                        <div style="text-align:center; padding: 2rem;">로딩 중...</div>
+                    </div>
+
+                    <div id="result-container" style="display: none; text-align: center; padding: 2rem;">
+                        <div style="font-size: 5rem; margin-bottom: 1rem;">🏆</div>
+                        <h2 id="score-value" style="font-size: 3rem; color: var(--primary-color);"></h2>
+                        <p id="score-message" style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--text-color);">
+                        </p>
+                        <button id="retry-btn" class="btn btn-primary">다시 풀기</button>
+                        <a href="index.html" class="btn btn-secondary">홈으로 가기</a>
+                    </div>
                 </div>
+            </div>
 
-                <div id="result-container" style="display: none; text-align: center; padding: 2rem;">
-                    <div style="font-size: 5rem; margin-bottom: 1rem;">🏆</div>
-                    <h2 id="score-value" style="font-size: 3rem; color: var(--primary-color);"></h2>
-                    <p id="score-message" style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--text-color);"></p>
-                    <button id="retry-btn" class="btn btn-primary">다시 풀기</button>
-                    <a href="index.html" class="btn btn-secondary">홈으로 가기</a>
+            <div class="study-right">
+                <div class="card scoreboard-card">
+                    <h2>🏆 명예의 전당</h2>
+                    <p style="color:#999; font-size: 0.9rem; margin-bottom: 1.5rem;">최근 학습 기록</p>
+                    <div id="scoreboard-list">
+                        <!-- Records injected via JS -->
+                        <div style="text-align:center; color:#ccc; padding: 2rem;">아직 기록이 없어요.<br>첫 번째 주인공이 되어보세요!</div>
+                    </div>
                 </div>
             </div>
         </main>

@@ -72,10 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultContainer = document.getElementById('result-container');
     const scoreDisplay = document.getElementById('score-display');
     const retryBtn = document.getElementById('retry-btn');
+    const nameInput = document.getElementById('participant-name');
+    const scoreboardList = document.getElementById('scoreboard-list');
+
+    const SCOREBOARD_KEY = 'sejo120_quiz_scores';
 
     if (!quizContainer) return;
 
     let userAnswers = new Array(quizData.length).fill(null);
+
+    // Initial Render
+    renderScoreboard();
 
     function renderQuiz() {
         quizContainer.innerHTML = '';
@@ -113,8 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.textContent = '채점하기';
         submitBtn.onclick = calculateScore;
         quizContainer.appendChild(submitBtn);
-
-        // Add event listeners for options to clear error styling if implemented
     }
 
     function getSubjectClass(subject) {
@@ -128,6 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateScore() {
+        // Validation: Check Name
+        const name = nameInput.value.trim();
+        if (!name) {
+            alert('채점하기 전에 이름을 입력해주세요!');
+            nameInput.focus();
+            return;
+        }
+
         let score = 0;
         let correctCount = 0;
         let unanswered = 0;
@@ -150,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.classList.add('correct');
                 } else {
                     card.classList.add('incorrect');
-                    // Show correct answer? Maybe later.
                 }
             } else {
                 unanswered++;
@@ -163,6 +175,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
         }
+
+        // Save Score
+        const now = new Date();
+        const record = {
+            name: name,
+            score: score,
+            date: now.toLocaleDateString(),
+            time: now.toLocaleTimeString(),
+            timestamp: now.getTime()
+        };
+        saveScore(record);
 
         // Show result
         quizContainer.style.display = 'none';
@@ -178,6 +201,46 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('score-message').textContent = message;
 
         window.scrollTo(0, 0);
+    }
+
+    function saveScore(record) {
+        let scores = JSON.parse(localStorage.getItem(SCOREBOARD_KEY) || '[]');
+        scores.unshift(record); // Add new record to the top
+        // Limit to 50 records if needed, but 'never disappear' requested so keep all? 
+        // Let's keep all for now as requested.
+        localStorage.setItem(SCOREBOARD_KEY, JSON.stringify(scores));
+        renderScoreboard(record.timestamp); // Pass current timestamp to highlight
+    }
+
+    function renderScoreboard(highlightTimestamp = null) {
+        const scores = JSON.parse(localStorage.getItem(SCOREBOARD_KEY) || '[]');
+
+        if (scores.length === 0) {
+            scoreboardList.innerHTML = '<div style="text-align:center; color:#ccc; padding: 2rem;">아직 기록이 없어요.<br>첫 번째 주인공이 되어보세요!</div>';
+            return;
+        }
+
+        scoreboardList.innerHTML = '';
+        scores.forEach((record, index) => {
+            const item = document.createElement('div');
+            item.className = 'score-item';
+            if (highlightTimestamp && record.timestamp === highlightTimestamp) {
+                item.classList.add('new-record');
+            }
+
+            item.innerHTML = `
+                <div style="display:flex; align-items:center;">
+                    <div class="score-left">
+                        <span class="score-name">${record.name}</span>
+                        <span class="score-date">${record.date} ${record.time}</span>
+                    </div>
+                </div>
+                <div class="score-right">
+                    <span class="score-value">${record.score}점</span>
+                </div>
+            `;
+            scoreboardList.appendChild(item);
+        });
     }
 
     retryBtn.addEventListener('click', () => {
