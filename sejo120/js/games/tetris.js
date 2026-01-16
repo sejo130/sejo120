@@ -382,9 +382,19 @@ const TetrisGame = (function () {
         return false;
     }
 
+    Piece.prototype.hardDrop = function () {
+        this.unDraw();
+        while (!this.collision(0, 1, this.activeTetromino)) {
+            this.y++;
+        }
+        this.draw();
+        this.lock();
+        p = randomPiece();
+    }
+
     function handleInput(e) {
-        // Prevent default scrolling for arrow keys
-        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        // Prevent default scrolling for arrow keys and spacebar
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
             e.preventDefault();
         }
 
@@ -392,6 +402,7 @@ const TetrisGame = (function () {
         if (e.key == "ArrowRight") p.moveRight();
         if (e.key == "ArrowUp") p.rotate();
         if (e.key == "ArrowDown") p.moveDown();
+        if (e.key == " ") p.hardDrop();
     }
 
     let dropStart = Date.now();

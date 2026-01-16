@@ -78,8 +78,8 @@ const SnakeGame = (function () {
     }
 
     function handleInput(e) {
-        // Prevent default scrolling for arrow keys
-        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        // Prevent default scrolling for arrow keys and spacebar
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
             e.preventDefault();
         }
 
