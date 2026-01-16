@@ -1,70 +1,46 @@
 
-const quizData = [
-    {
-        subject: "국어",
-        question: "다음 중 표준어가 아닌 것은 무엇일까요?",
-        options: ["사랑해", "예쁘다", "주책이다", "끄적거리다"],
-        answer: 2 // 주책이다 -> 주책없다 (Though actually language evolves, '주책이다' is often cited in school grammar quizzes as tricky, but standard is complex. Let's make it simpler for 5th grade)
-    },
-    {
-        subject: "국어",
-        question: "글을 읽고 글쓴이의 주장을 파악하는 방법으로 알맞지 않은 것은?",
-        options: [
-            "글의 제목을 살펴본다.",
-            "글쓴이가 반복해서 강조하는 말을 찾는다.",
-            "글의 내용을 내 마음대로 상상해서 고친다.",
-            "각 문단의 중심 내용을 확인한다."
-        ],
-        answer: 2
-    },
-    {
-        subject: "수학",
-        question: "가로가 5cm, 세로가 8cm인 직사각형의 넓이는 얼마입니까?",
-        options: ["20㎠", "30㎠", "40㎠", "50㎠"],
-        answer: 2 // 5 * 8 = 40
-    },
-    {
-        subject: "수학",
-        question: "분수 1/2과 크기가 같은 분수는?",
-        options: ["2/4", "1/3", "2/3", "3/5"],
-        answer: 0
-    },
-    {
-        subject: "수학",
-        question: "삼각형의 세 각의 합은 몇 도 입니까?",
-        options: ["90도", "180도", "270도", "360도"],
-        answer: 1
-    },
-    {
-        subject: "사회",
-        question: "우리나라의 동쪽은 높고 서쪽은 낮은 지형 특징을 무엇이라고 합니까?",
-        options: ["동고서저", "삼면이 바다", "배산임수", "동서남북"],
-        answer: 0
-    },
-    {
-        subject: "사회",
-        question: "조선 시대를 세운 왕의 이름은 무엇입니까?",
-        options: ["이방원", "세종대왕", "이순신", "이성계"],
-        answer: 3
-    },
-    {
-        subject: "과학",
-        question: "식물이 빛을 이용하여 양분을 만드는 작용을 무엇이라고 합니까?",
-        options: ["호흡", "광합성", "증산 작용", "소화"],
-        answer: 1
-    },
-    {
-        subject: "과학",
-        question: "물에 녹는 물질을 용질, 녹이는 물질을 용매라고 합니다. 소금물의 용매는 무엇입니까?",
-        options: ["소금", "물", "소금물", "유리막대"],
-        answer: 1
-    },
-    {
-        subject: "상식",
-        question: "대한민국의 수도는 어디입니까?",
-        options: ["부산", "인천", "서울", "광주"],
-        answer: 2
-    }
+const questionBank = [
+    // --- 국어 (Korean) ---
+    { subject: "국어", question: "다음 중 표준어가 아닌 것은 무엇일까요?", options: ["사랑해", "예쁘다", "주책이다", "끄적거리다"], answer: 2 },
+    { subject: "국어", question: "글을 읽고 글쓴이의 주장을 파악하는 방법으로 알맞지 않은 것은?", options: ["글의 제목을 살펴본다.", "글쓴이가 반복해서 강조하는 말을 찾는다.", "글의 내용을 내 마음대로 상상해서 고친다.", "각 문단의 중심 내용을 확인한다."], answer: 2 },
+    { subject: "국어", question: "'사과'의 뜻으로 알맞지 않은 것은?", options: ["과일의 한 종류", "자기의 잘못을 인정하고 용서를 빎", "모래와 과자", "어떤 일에 대하여 미안하다고 함"], answer: 2 },
+    { subject: "국어", question: "문장의 호응 관계가 자연스러운 것은?", options: ["나는 어제 도서관에 갈 것이다.", "할아버지께서 밥을 먹는다.", "동생은 키가 큽니다.", "선생님께 말씀을 드린다."], answer: 3 },
+    { subject: "국어", question: "다음 중 순우리말이 아닌 것은?", options: ["미리내", "가람", "컴퓨터", "시나브로"], answer: 2 },
+    { subject: "국어", question: "'낫 놓고 ㄱ자도 모른다'는 속담의 뜻은?", options: ["아주 무식하다.", "낫을 본 적이 없다.", "글자를 배울 필요가 없다.", "농사일을 아주 잘한다."], answer: 0 },
+    { subject: "국어", question: "높임말을 바르게 사용한 문장은?", options: ["선생님, 넥타이가 멋있으세요.", "할머니, 진지 잡수세요.", "교장 선생님의 말씀이 계시겠습니다.", "이 상품은 품절이십니다."], answer: 1 },
+
+    // --- 수학 (Math) ---
+    { subject: "수학", question: "가로가 5cm, 세로가 8cm인 직사각형의 넓이는 얼마입니까?", options: ["20㎠", "30㎠", "40㎠", "50㎠"], answer: 2 },
+    { subject: "수학", question: "분수 1/2과 크기가 같은 분수는?", options: ["2/4", "1/3", "2/3", "3/5"], answer: 0 },
+    { subject: "수학", question: "삼각형의 세 각의 합은 몇 도 입니까?", options: ["90도", "180도", "270도", "360도"], answer: 1 },
+    { subject: "수학", question: "12와 18의 최대공약수는?", options: ["2", "3", "4", "6"], answer: 3 },
+    { subject: "수학", question: "소수 0.5를 분수로 나타내면?", options: ["1/5", "1/2", "5/100", "2/5"], answer: 1 },
+    { subject: "수학", question: "정육면체의 면의 개수는 몇 개입니까?", options: ["4개", "6개", "8개", "12개"], answer: 1 },
+    { subject: "수학", question: "다음 중 다각형이 아닌 것은?", options: ["삼각형", "사각형", "원", "오각형"], answer: 2 },
+
+    // --- 사회 (Social Studies) ---
+    { subject: "사회", question: "우리나라의 동쪽은 높고 서쪽은 낮은 지형 특징을 무엇이라고 합니까?", options: ["동고서저", "삼면이 바다", "배산임수", "동서남북"], answer: 0 },
+    { subject: "사회", question: "조선 시대를 세운 왕의 이름은 무엇입니까?", options: ["이방원", "세종대왕", "이순신", "이성계"], answer: 3 },
+    { subject: "사회", question: "우리나라의 가장 큰 섬은 어디입니까?", options: ["울릉도", "독도", "제주도", "거제도"], answer: 2 },
+    { subject: "사회", question: "임진왜란 때 거북선을 만들어 왜군을 물리친 장군은?", options: ["강감찬", "권율", "이순신", "김유신"], answer: 2 },
+    { subject: "사회", question: "우리나라의 행정 구역 중 '특별시'는 몇 개일까요?", options: ["1개", "2개", "3개", "없음"], answer: 0 },
+    { subject: "사회", question: "경주에 있는 신라 시대의 절로, 다보탑과 석가탑이 있는 곳은?", options: ["불국사", "석굴암", "해인사", "통도사"], answer: 0 },
+
+    // --- 과학 (Science) ---
+    { subject: "과학", question: "식물이 빛을 이용하여 양분을 만드는 작용을 무엇이라고 합니까?", options: ["호흡", "광합성", "증산 작용", "소화"], answer: 1 },
+    { subject: "과학", question: "물에 녹는 물질을 용질, 녹이는 물질을 용매라고 합니다. 소금물의 용매는 무엇입니까?", options: ["소금", "물", "소금물", "유리막대"], answer: 1 },
+    { subject: "과학", question: "다음 중 태양계의 행성이 아닌 것은?", options: ["지구", "화성", "달", "목성"], answer: 2 },
+    { subject: "과학", question: "자석의 N극과 S극이 서로 만날 때 일어나는 현상은?", options: ["서로 밀어낸다.", "서로 당긴다.", "아무 변화 없다.", "회전한다."], answer: 1 },
+    { subject: "과학", question: "우리 몸에서 혈액을 온몸으로 보내는 펌프 역할을 하는 기관은?", options: ["위", "간", "심장", "폐"], answer: 2 },
+    { subject: "과학", question: "다음 중 곤충이 아닌 동물은?", options: ["개미", "거미", "잠자리", "나비"], answer: 1 }, // 거미는 절지동물(다리 8개)
+
+    // --- 상식 (General Knowledge) ---
+    { subject: "상식", question: "대한민국의 수도는 어디입니까?", options: ["부산", "인천", "서울", "광주"], answer: 2 },
+    { subject: "상식", question: "태극기의 4괘가 아닌 것은?", options: ["건", "곤", "감", "강"], answer: 3 }, // 건곤감리
+    { subject: "상식", question: "한글날은 몇 월 며칠입니까?", options: ["8월 15일", "10월 3일", "10월 9일", "3월 1일"], answer: 2 },
+    { subject: "상식", question: "우리나라 애국가는 몇 절까지 있을까요?", options: ["1절", "2절", "3절", "4절"], answer: 3 },
+    { subject: "상식", question: "임진왜란이 일어난 해는?", options: ["1392년", "1592년", "1894년", "1910년"], answer: 1 },
+    { subject: "상식", question: "다음 중 악기가 아닌 것은?", options: ["단소", "리코더", "장구", "지휘봉"], answer: 3 }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,17 +52,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreboardList = document.getElementById('scoreboard-list');
 
     const SCOREBOARD_KEY = 'sejo120_quiz_scores';
+    const QUIZ_SIZE = 10; // 하루 10문제
 
     if (!quizContainer) return;
 
-    let userAnswers = new Array(quizData.length).fill(null);
+    let currentQuizData = []; // Store the currently selected random questions
 
     // Initial Render
     renderScoreboard();
+    initQuiz(); // Initialize and render first set of random questions
+
+    function initQuiz() {
+        // Reset state UI
+        quizContainer.style.display = 'block';
+        resultContainer.style.display = 'none';
+
+        // Select random questions
+        currentQuizData = getRandomQuestions(QUIZ_SIZE);
+        renderQuiz();
+    }
+
+    // Helper: Select N random unique questions
+    function getRandomQuestions(count) {
+        // Shuffle array using Fisher-Yates algorithm
+        const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
 
     function renderQuiz() {
         quizContainer.innerHTML = '';
-        quizData.forEach((item, index) => {
+        currentQuizData.forEach((item, index) => {
             const questionEl = document.createElement('div');
             questionEl.className = 'quiz-card';
 
@@ -148,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset previous feedback styles
         const questions = document.querySelectorAll('.quiz-card');
 
-        quizData.forEach((item, index) => {
+        currentQuizData.forEach((item, index) => {
             const selected = document.querySelector(`input[name="q${index}"]:checked`);
             const card = questions[index];
 
@@ -244,14 +239,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     retryBtn.addEventListener('click', () => {
-        resultContainer.style.display = 'none';
-        quizContainer.style.display = 'block';
+        // For standard "Daily Learning", maybe we should NOT reset the name? 
+        // But user might want to try again.
+        // Let's regenerate questions for a "New Try" experience
+
         // Clear inputs
         document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
         // Clear classes
         document.querySelectorAll('.quiz-card').forEach(el => el.classList.remove('correct', 'incorrect'));
+
+        initQuiz(); // Re-roll questions and show
         window.scrollTo(0, 0);
     });
 
-    renderQuiz();
 });
