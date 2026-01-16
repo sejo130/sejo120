@@ -1,0 +1,450 @@
+/* Global Styles */
+:root {
+    --bg-color: #fff9f0;
+    /* Warm cream background */
+    --text-color: #5d5d5d;
+    /* Soft dark gray */
+    --primary-color: #ff9fb3;
+    /* Pastel Pink */
+    --secondary-color: #a0c4ff;
+    /* Pastel Blue */
+    --accent-color: #fdffb6;
+    /* Pastel Yellow */
+    --card-bg: #ffffff;
+    --shadow-color: rgba(255, 159, 179, 0.2);
+    --font-main: 'Fredoka', sans-serif;
+    /* Rounded font */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-image: radial-gradient(#ffdfd3 2px, transparent 2px);
+    background-size: 40px 40px;
+    /* Polka dot pattern */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-weight: 600;
+    color: #4a4a4a;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    text-shadow: 3px 3px 0px var(--accent-color);
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 0 0 30px 30px;
+    padding: 1.5rem 3rem;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    margin-bottom: 2rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    position: relative;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 50%;
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 60vh;
+    padding: 4rem 0;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    color: #7a7a7a;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.btn-primary:hover {
+    transform: scale(1.1) rotate(-2deg);
+    background-color: #ff8fa6;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: scale(1.1);
+    background-color: #8ecae6;
+}
+
+/* Cards / Subpage Content */
+.content-section {
+    padding: 2rem 0;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 40px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
+    margin-bottom: 2rem;
+    border: 5px solid #fff;
+}
+
+/* Game Selection */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.game-card {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border: 3px solid #f0f0f0;
+    box-shadow: 0 8px 0 #f0f0f0;
+    /* Cute 3D effect */
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 8px 0 var(--secondary-color);
+}
+
+.game-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Active Game Container */
+#active-game-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 40px;
+    border: 5px solid var(--accent-color);
+}
+
+#game-board-area {
+    background: #f1f5f9 !important;
+    /* Override inline style */
+    border-radius: 20px !important;
+    border: 4px dashed var(--secondary-color) !important;
+    box-shadow: none !important;
+}
+
+/* Gallery */
+.gallery-upload {
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: 3rem;
+    border: 3px dashed var(--primary-color);
+    background-color: #fff5f7;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.gallery-upload:hover {
+    background-color: #ffe6eb;
+    transform: scale(1.02);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* About Editor */
+.editable-area {
+    min-height: 300px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 30px;
+    border: 3px solid #eee;
+    color: var(--text-color);
+    font-family: inherit;
+    line-height: 1.8;
+    outline: none;
+    white-space: pre-wrap;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.editable-area:focus {
+    border-color: var(--secondary-color);
+}
+
+.toolbar {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+/* Minesweeper specifics override */
+.minesweeper-grid {
+    border-radius: 10px;
+    border: none !important;
+    background-color: #e2e8f0 !important;
+    padding: 10px !important;
+}
+
+.cell {
+    border-radius: 5px;
+    background-color: #fff !important;
+    box-shadow: 0 2px 0 #cbd5e1;
+}
+
+.cell:hover {
+    transform: translateY(-1px);
+}
+
+.cell.revealed {
+    background-color: #e2e8f0 !important;
+    box-shadow: none;
+}
+
+/* Quiz Styles */
+.quiz-card {
+    background-color: #fff;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-card:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.badge {
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+}
+
+.badge-kr {
+    background-color: #ff9fb3;
+}
+
+.badge-math {
+    background-color: #a0c4ff;
+}
+
+.badge-soc {
+    background-color: #bdb2ff;
+}
+
+.badge-sci {
+    background-color: #9bf6ff;
+    color: #555;
+}
+
+.badge-def {
+    background-color: #ffd6a5;
+    color: #555;
+}
+
+.quiz-question {
+    font-size: 1.3rem;
+    margin: 0;
+    color: #4a4a4a;
+    flex: 1;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid #f0f0f0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quiz-option:hover {
+    background-color: #f9f9f9;
+    border-color: var(--secondary-color);
+}
+
+.quiz-option input[type="radio"] {
+    margin-right: 1rem;
+    accent-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.quiz-card.correct {
+    border-color: #4ade80;
+    background-color: #f0fdf4;
+}
+
+.quiz-card.incorrect {
+    border-color: #f87171;
+    background-color: #fef2f2;
+}
+
+.submit-quiz-btn {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+}
