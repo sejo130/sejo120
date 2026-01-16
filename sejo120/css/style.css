@@ -448,3 +448,116 @@ nav a:hover::after {
     font-size: 1.5rem;
     padding: 1.5rem;
 }
+
+/* Workout Page */
+.workout-container {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.counter-display {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.5rem 3rem;
+    display: inline-block;
+    margin: 2rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 3px solid var(--secondary-color);
+}
+
+#workout-counter {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: 'Courier New', monospace; /* Monospace for stable numbers */
+}
+
+.game-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    min-height: 400px; /* Space for speech bubble */
+}
+
+.hippo-wrapper {
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none; /* Prevent highlighting on rapid clicks */
+    -webkit-user-select: none;
+}
+
+#hippo-character {
+    max-width: 100%;
+    height: auto;
+    width: 400px;
+    /* Optional: if you want a border or shadow for the image specifically */
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+}
+
+/* Animations */
+.running-hard {
+    animation: run-shake 0.2s ease-in-out;
+}
+
+@keyframes run-shake {
+  0% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(2px) rotate(1deg); }
+  50% { transform: translateY(-2px) rotate(-1deg); }
+  75% { transform: translateY(2px) rotate(1deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+/* Speech Bubble */
+.speech-bubble {
+    position: absolute;
+    top: 50px; 
+    right: 50%;
+    transform: translateX(140%) translateY(10px); /* Position to the right of center */
+    background-color: #ffffff;
+    border: 3px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: -18px; /* Arrow pointing left to the hippo */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 20px solid var(--primary-color);
+}
+
+.speech-bubble.visible {
+    opacity: 1;
+    transform: translateX(140%) translateY(0);
+}
+
+.speech-bubble.hidden {
+    opacity: 0;
+    transform: translateX(140%) translateY(10px);
+}
+
+/* Active Nav State */
+nav a.active {
+    color: var(--primary-color);
+}
+
+nav a.active::after {
+    width: 100%;
+    left: 0;
+}
