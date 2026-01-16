@@ -383,6 +383,11 @@ const TetrisGame = (function () {
     }
 
     function handleInput(e) {
+        // Prevent default scrolling for arrow keys
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            e.preventDefault();
+        }
+
         if (e.key == "ArrowLeft") p.moveLeft();
         if (e.key == "ArrowRight") p.moveRight();
         if (e.key == "ArrowUp") p.rotate();
